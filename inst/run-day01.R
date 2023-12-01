@@ -1,0 +1,7 @@
+x <- readLines("./inst/input01.txt")
+
+(p1 <- solve01a(x))
+(p2 <- solve01b(x))
+
+stopifnot(p1 == aoc_solutions$day01a)
+stopifnot(p2 == aoc_solutions$day01b)
