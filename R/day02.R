@@ -28,16 +28,16 @@ parse02 <- function(raw_games)
     \(sets) sets |> tail(-1) |> strsplit(", ") |> lapply(normalize_set)
   )
 
-normalize_set <- function(set) {
+normalize_set <- function(raw_set) {
 
-  t <- str_match(set, "(\\d+) (r|g|b)")
-  res <- setNames(as.integer(t[, 2]), t[, 3])
+  t <- str_match(raw_set, "(\\d+) (r|g|b)")
+  set <- setNames(as.integer(t[, 2]), t[, 3])
 
-  if (is.na(res["r"])) res["r"] <- 0
-  if (is.na(res["g"])) res["g"] <- 0
-  if (is.na(res["b"])) res["b"] <- 0
+  if (is.na(set["r"])) set["r"] <- 0
+  if (is.na(set["g"])) set["g"] <- 0
+  if (is.na(set["b"])) set["b"] <- 0
 
-  res
+  set
 
 }
 
