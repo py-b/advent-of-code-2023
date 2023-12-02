@@ -2,7 +2,12 @@
 
 export(aoc_solutions)
 export(example_data_01)
+export(example_data_02)
 export(solve01a)
 export(solve01b)
+export(solve02a)
+export(solve02b)
+importFrom(stats,setNames)
+importFrom(stringr,str_match)
 importFrom(utils,head)
 importFrom(utils,tail)
