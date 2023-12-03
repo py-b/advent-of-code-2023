@@ -1,4 +1,4 @@
-test_that("solve01", {
+test_that("solve02", {
 
   expect_equal(
     solve02a(example_data_02()),
