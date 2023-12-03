@@ -14,9 +14,9 @@
 solve03a <- function(x) {
 
   numbers <- x |> str_extract_all("[0-9]+") |> unlist() |> as.integer()
-  to_keep <- is_part_number(numbers_location(x), grid = parse03(x))
+  with_symbol <- is_part_number(numbers_location(x), grid = parse03(x))
 
-  sum(numbers[to_keep])
+  sum(numbers[with_symbol])
 
 }
 
