@@ -13,7 +13,7 @@
 solve04a <- function(x)
   x |>
     parse04() |>
-    lapply(win_count) |>
+    lapply(winning_numbers) |>
     lengths() |>
     card_value() |>
     sum()
@@ -24,7 +24,7 @@ solve04a <- function(x)
 solve04b <- function(x)
   x |>
     parse04() |>
-    lapply(win_count) |>
+    lapply(winning_numbers) |>
     lengths() |>
     unstack()
 
@@ -38,7 +38,7 @@ parse04 <- function(x)
       \(cd) cd[-1] |> setNames(c("win", "have")) |> trimws() |> strsplit(" +")
     )
 
-win_count <- function(card) intersect(card$win, card$have)
+winning_numbers <- function(card) intersect(card$win, card$have)
 
 card_value <- function(n_win) floor(2 ^ (n_win - 1))
 
