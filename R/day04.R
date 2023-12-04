@@ -13,7 +13,9 @@
 solve04a <- function(x)
   x |>
     parse04() |>
-    sapply(\(card) card_value(intersect(card$win, card$have))) |>
+    lapply(win_count) |>
+    lengths() |>
+    card_value() |>
     sum()
 
 #' @rdname day04
@@ -22,8 +24,8 @@ solve04a <- function(x)
 solve04b <- function(x)
   x |>
     parse04() |>
-    sapply(\(card) length(intersect(card$win, card$have))) |>
-    setNames(seq(x)) |>
+    lapply(win_count) |>
+    lengths() |>
     unstack()
 
 
@@ -36,31 +38,31 @@ parse04 <- function(x)
       \(cd) cd[-1] |> setNames(c("win", "have")) |> trimws() |> strsplit(" +")
     )
 
-card_value <- function(n_win) floor(2 ^ (length(n_win) - 1))
+win_count <- function(card) intersect(card$win, card$have)
 
-unstack <- function(winners) {
+card_value <- function(n_win) floor(2 ^ (n_win - 1))
 
-  id <- as.integer(names(winners))
-  n_copies <- unname(winners)
+unstack <- function(n_copies) {
+
+  id <- seq_along(n_copies)
 
   stack <- id
-  res <- 0
+  cards_count <- 0
 
   while (length(stack)) {
 
-    res <- res + 1
-
-    # 1. pull card
-    id_pull <- stack[1]
-    n_to_stack <- n_copies[id_pull]
+    # 1. pop card
+    id1 <- stack[1]
     stack <- stack[-1]
+    cards_count <- cards_count + 1
 
     # 2. push copies
-    if (n_to_stack != 0) stack <- c(id[id_pull + 1:n_to_stack], stack)
+    n_to_stack <- n_copies[id1]
+    if (n_to_stack > 0) stack <- c(id[id1 + seq(n_to_stack)], stack)
 
   }
 
-  res
+  cards_count
 
 }
 
