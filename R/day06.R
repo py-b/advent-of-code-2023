@@ -32,7 +32,7 @@ solve06 <- function(x, collapse = FALSE) {
 }
 
 winning_strats <- function(race_time, record) {
-  # solve `hold * (racetime - hold) > record` for `hold`
+  # solve `dist * (racetime - dist) > record` for `dist`
   delta <- (-race_time)^2 - 4 * record
   roots <- (race_time + c(-1, 1) * sqrt(delta)) / 2
   # integers strictly between roots
