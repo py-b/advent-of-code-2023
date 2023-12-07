@@ -20,8 +20,9 @@ aoc_solutions <- list(
   day06a = 252000,
   day06b = 36992486,
 
-  day07a = NA,
-  day07b = NA,
+  day07a = 253313241,
+  day07b = 253362743,
+
   day08a = NA,
   day08b = NA,
   day09a = NA,
