@@ -58,25 +58,19 @@ solve07 <- function(x, jokers = FALSE) {
 }
 
 parse07 <- function(x) {
-
-  hands_str <- strsplit(x, " ")
-  data.frame(
-    hand = sapply(hands_str, \(.) .[[1]]),
-    bid  = sapply(hands_str, \(.) .[[2]]) |> as.integer()
-  )
-
+  read.table(text = x, col.names = c("hand", "bid"))
 }
 
-# Strength representation (will arrange nicely with character sort)
-    # "5"     : five of a kind
-    # "41"    : four of a kind
-    # "32"    : full house
-    # "311"   : three of a kind
-    # "221"   : two pairs
-    # "21111" : one pair
-    # "11111" : high card
-#
 strength <- function(hand) {
+
+  # Strength representation (will arrange nicely with character sort)
+      # "5"     : five of a kind
+      # "41"    : four of a kind
+      # "32"    : full house
+      # "311"   : three of a kind
+      # "221"   : two pairs
+      # "21111" : one pair
+      # "11111" : high card
 
   hand |>
     strsplit("") |>
