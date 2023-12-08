@@ -63,15 +63,6 @@ parse08 <- function(x) {
 
 }
 
-apply_all_instructions <- function(node, network) {
-
-  # apply all instructions for a node in a map, return final node
-
-  for (i in network$instructions) node <- network$nodes[[node]][[i]]
-  node
-
-}
-
 cycle_length <- function(node, network) {
 
   # apply all instructions as many time as needed to get a final "Z"
@@ -79,7 +70,7 @@ cycle_length <- function(node, network) {
   apply_times <- 0
 
   while (substr(node, 3, 3) != "Z") {
-    node <- apply_all_instructions(node, network)
+    for (i in network$instructions) node <- network$nodes[[node]][[i]]
     apply_times <- apply_times + 1
   }
 

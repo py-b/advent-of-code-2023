@@ -58,7 +58,7 @@ solve07 <- function(x, jokers = FALSE) {
 }
 
 parse07 <- function(x) {
-  read.table(text = x, col.names = c("hand", "bid"))
+  utils::read.table(text = x, col.names = c("hand", "bid"))
 }
 
 strength <- function(hand) {

@@ -14,7 +14,7 @@ solve08b(x)
 example_data_08(example = 1)
 }
 \arguments{
-\item{x}{raw maps}
+\item{x}{raw network}
 
 \item{example}{Which example data to use (by position or name).}
 }
@@ -22,6 +22,6 @@ example_data_08(example = 1)
 \href{https://adventofcode.com/2023/day/8}{Haunted Wasteland}
 }
 \examples{
-solve08a(example_data_08(2))
-solve08b(example_data_08(2))
+solve08a(example_data_08("a"))
+solve08b(example_data_08("b"))
 }
