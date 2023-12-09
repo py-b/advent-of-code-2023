@@ -24,23 +24,19 @@ solve09b <- function(x) x |> parse09() |> extrapolate_prevs() |> sum()
 parse09 <- \(x) read.table(text = x)
 
 extrapolate_nexts <- \(report) apply(report, 1, extrapolate)
-extrapolate_prevs <- \(report) apply(report, 1, extrapolate, backward = TRUE)
+extrapolate_prevs <- \(report) apply(report, 1, \(.) rev(.) |> extrapolate())
 
-extrapolate <- function(history, backward = FALSE) {
+extrapolate <- function(history) {
 
   vals <- c()
 
   repeat {
-    keep <- if (backward) head(history, 1) else tail(history, 1)
-    vals <- c(vals, keep)
+    vals <- c(vals, tail(history, 1))
     if (length(unique(history)) == 1) break
     history <- diff(history)
   }
 
-  if (backward)
-    sum(vals * rep_len(c(1, -1), length(vals)))
-  else
-    sum(vals)
+  sum(vals)
 
 }
 
