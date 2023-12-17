@@ -23,7 +23,7 @@ solve15b <- function(x) {
 
   instructions |>
     fill_boxes() |>
-    sapply(\(b) sum((hash15(names(b)) + 1) * unlist(b) * seq(b))) |>
+    vapply(box_value, numeric(1)) |>
     sum()
 
 }
@@ -82,6 +82,12 @@ fill_boxes <- function(instructions) {
 
   Filter(\(.) length(.) > 0, boxes)
 
+}
+
+box_value <- function(box) {
+  box_number <- hash15(names(box)[1])
+  focals <- unlist(box)
+  sum((box_number + 1) * focals * seq(box))
 }
 
 
