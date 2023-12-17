@@ -28,15 +28,15 @@ extrapolate_prevs <- \(report) apply(report, 1, \(.) rev(.) |> extrapolate())
 
 extrapolate <- function(history) {
 
-  vals <- c()
+  tails <- c()
 
   repeat {
-    vals <- c(vals, tail(history, 1))
+    tails <- c(tails, tail(history, 1))
     if (length(unique(history)) == 1) break
     history <- diff(history)
   }
 
-  sum(vals)
+  sum(tails)
 
 }
 
