@@ -35,11 +35,12 @@ hash15 <- function(text) {
 
   vapply(
     text,
-    function(t) {
-      hash <- 0L
-      for (ascii in utf8ToInt(t)) hash <- ((hash + ascii) * 17) %% 256
-      as.integer(hash)
-    },
+    function(t)
+      Reduce(
+        \(m, n) ((m + n) * 17L) %% 256L,
+        utf8ToInt(t),
+        init = 0L
+      ),
     FUN.VALUE = integer(1)
   )
 
